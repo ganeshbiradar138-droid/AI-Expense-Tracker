@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}AI Insights — SpendAI{% endblock %}{% block content %}
+<div class="topbar"><div><div class="badge">AI ANALYSIS</div><h1>Your spending insights</h1><p>Simple observations generated from your recorded expenses.</p></div></div>
+<section class="ai-card big"><div class="spark">✦</div><div><h2>AI summary</h2>{% for s in suggestions %}<p class="insight-line">• {{s}}</p>{% endfor %}</div></section>
+<section class="card"><div class="card-head"><h2>Category breakdown</h2><span>Total: ₹{{"%.0f"|format(total)}}</span></div>{% for c,v in cats.items() %}<div class="metric"><div><span>{{c}}</span><b>₹{{"%.0f"|format(v)}}</b></div><div class="progress"><i style="width:{{(v/total*100) if total else 0}}%"></i></div></div>{% else %}<div class="empty">No expense data yet.</div>{% endfor %}</section>
+{% endblock %}

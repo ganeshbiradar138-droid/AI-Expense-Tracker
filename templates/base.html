@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}SpendAI{% endblock %}</title><link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body>
+{% if session.get("user_id") %}
+<aside class="sidebar"><a class="logo" href="{{url_for('dashboard')}}"><b>₹</b><span>Spend<span>AI</span></span></a>
+<nav><a href="{{url_for('dashboard')}}">⌂ <span>Dashboard</span></a><a href="{{url_for('transaction_list')}}">↕ <span>Transactions</span></a><a href="{{url_for('budget')}}">◉ <span>Budget</span></a><a href="{{url_for('reports')}}">▥ <span>Reports</span></a><a href="{{url_for('ai_insights')}}">✦ <span>AI Insights</span></a></nav>
+<div class="side-bottom"><div class="user-mini"><div class="avatar">{{session.get("user_name","U")[0]|upper}}</div><div><strong>{{session.get("user_name")}}</strong><small>Personal account</small></div></div><a class="logout" href="{{url_for('logout')}}">↪ Logout</a></div></aside>
+<header class="mobile-head"><a class="logo" href="{{url_for('dashboard')}}"><b>₹</b> Spend<span>AI</span></a><a href="{{url_for('logout')}}">↪</a></header>
+{% endif %}
+<main class="{{'app-main' if session.get('user_id') else 'public-main'}}">
+{% with messages=get_flashed_messages(with_categories=true) %}{% for c,m in messages %}<div class="toast {{c}}">{{m}}</div>{% endfor %}{% endwith %}
+{% block content %}{% endblock %}</main>
+{% if session.get("user_id") %}<nav class="bottom-nav"><a href="{{url_for('dashboard')}}">⌂<small>Home</small></a><a href="{{url_for('transaction_list')}}">↕<small>Transactions</small></a><a href="{{url_for('ai_insights')}}">✦<small>AI</small></a><a href="{{url_for('budget')}}">◉<small>Budget</small></a></nav>{% endif %}
+<script src="{{url_for('static',filename='js/app.js')}}"></script>{% block scripts %}{% endblock %}</body></html>

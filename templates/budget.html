@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Budget — SpendAI{% endblock %}{% block content %}
+<div class="topbar"><div><div class="badge">PLANNING</div><h1>Monthly budget</h1><p>Set a limit and keep your spending visible.</p></div></div>
+<section class="card budget-edit"><div class="budget-symbol">₹</div><h2>Set your monthly limit</h2><p>Choose an amount you are comfortable spending this month.</p><form method="POST"><label>Monthly budget</label><input type="number" name="amount" min="1" step=".01" value="{{amount or ''}}" placeholder="20000" required><button class="btn primary">Save budget</button></form></section>
+{% endblock %}
