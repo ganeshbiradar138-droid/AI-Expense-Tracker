@@ -1,4 +1,4 @@
-# SpendAI — AI-Based Expense Tracker V2
+# SpendAI — AI-Based Expense Tracker 
 
 A Flask + MongoDB personal finance mini-project with an ML/NLP component.
 
